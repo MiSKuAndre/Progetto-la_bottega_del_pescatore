@@ -1,0 +1,986 @@
+/* VARIABILI COLORI */
+:root {
+  --ocean: #0a2a4a;
+  --deep: #051525;
+  --wave: #1565c0;
+  --gold: #f4a12a;
+  --amber: #e88c10;
+  --foam: #e8f4f8;
+  --white: #ffffff;
+  --muted: #8fa8ba;
+  --rust: #c0392b;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--deep);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .5;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(5,21,37,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(244,161,42,.15);
+  transition: all .3s;
+}
+/* Aggiungiamo un'ombra più evidente al nav quando si scrolla per migliorare la leggibilità */
+nav .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .03em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.logo-img {
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 1.5px solid rgba(244,161,42,.35);
+  background: rgba(255,255,255,.05);
+  transition: transform .3s;
+}
+
+nav .logo:hover .logo-img { transform: rotate(-8deg) scale(1.07); }
+
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-text span { color: var(--white); font-size: .9rem; }
+/* Il menu di navigazione è nascosto su mobile, ma su desktop è un flex con gap */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+nav ul a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .85rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+nav ul a:hover { color: var(--gold); }
+
+nav .nav-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--deep);
+  padding: .55rem 1.4rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+
+nav .nav-cta:hover { background: var(--amber); transform: translateY(-1px); }
+
+/* ── HERO ── */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 70px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(21,101,192,.35) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(244,161,42,.08) 0%, transparent 60%),
+    linear-gradient(160deg, var(--deep) 0%, var(--ocean) 60%, #0d3b6e 100%);
+}
+
+.water-lines {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 220px;
+  overflow: hidden;
+}
+
+.water-lines svg { width: 200%; animation: slide-wave 8s linear infinite; }
+
+@keyframes slide-wave {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* Il contenuto della hero è centrato e ha un padding orizzontale per non toccare i bordi su mobile */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 3rem;
+  max-width: 780px;
+}
+
+.hero-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fade-up .7s .2s forwards;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.02;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fade-up .7s .4s forwards;
+}
+
+.hero-title em { font-style: italic; color: var(--gold); }
+
+.hero-sub {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.72);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fade-up .7s .6s forwards;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fade-up .7s .8s forwards;
+}
+/* I bottoni della hero hanno uno stile più audace e un'ombra per farli risaltare sullo sfondo */
+.btn-primary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--deep);
+  padding: 1rem 2.2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 24px rgba(244,161,42,.3);
+}
+
+.btn-primary:hover {
+  background: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(244,161,42,.4);
+}
+
+.btn-outline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .95rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border: 1.5px solid rgba(255,255,255,.35);
+  color: var(--white);
+  padding: 1rem 2.2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-hook {
+  position: absolute;
+  right: 12%; 
+  top: -10px; /* Lo facciamo scendere un po' di più */
+  width: 70px; /* Leggermente più grande */
+  height: auto;
+  z-index: 5; /* Assicurati che sia sopra gli altri elementi della hero */
+  opacity: 1; /* Piena visibilità */
+  transform-origin: top center;
+  animation: hook-swing 6s ease-in-out infinite;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(244,161,42,0.3)); /* Aggiunge un leggero bagliore */
+}
+
+/* L'animazione "hook-swing" fa oscillare l'amo avanti e indietro in modo fluido */
+@keyframes hook-swing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* hero-hook responsive → vedi blocco RESPONSIVE COMPLETO in fondo */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── MARQUEE STRIP ── */
+.marquee-strip {
+  background: var(--gold);
+  padding: .7rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-inner span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--deep);
+  padding: 0 2rem;
+}
+
+.marquee-inner span::after {
+  content: '◆';
+  margin-left: 2rem;
+  opacity: .5;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+section { padding: 6rem 3rem; }
+/* Le sezioni hanno un padding generoso per distanziare i contenuti e migliorare la leggibilità */
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .8rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-body {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.65);
+  line-height: 1.75;
+  max-width: 560px;
+}
+
+/* ── ABOUT ── */
+#about {
+  background: linear-gradient(135deg, var(--ocean) 0%, var(--deep) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.stat-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: border-color .3s, transform .3s;
+}
+
+.stat-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+
+.stat-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.about-image-stack {
+  display: flex;
+  gap: 1.5rem;
+  height: auto;
+}
+
+.about-img {
+  position: relative;
+  width: 50%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+
+.about-img-main {
+  transform: translateY(-10px);
+}
+
+.about-img-accent {
+  transform: translateY(10px);
+}
+
+.about-img-label {
+  position: absolute;
+  bottom: 80px; right: -20px;
+  background: var(--gold);
+  color: var(--deep);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .6rem 1rem;
+  border-radius: 2px;
+  z-index: 3;
+  white-space: nowrap;
+}
+
+/* PRODOTTI */
+#prodotti {
+  background: var(--deep);
+  position: relative;
+}
+
+.products-header {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 4rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+  filter: brightness(.75) saturate(.9);
+}
+
+.product-card:hover img {
+  transform: scale(1.06);
+  filter: brightness(.6) saturate(1.1);
+}
+
+.product-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,21,37,.95) 0%, rgba(5,21,37,.1) 60%, transparent 100%);
+}
+
+.product-card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.8rem 1.5rem;
+  transform: translateY(8px);
+  transition: transform .3s;
+}
+
+.product-card:hover .product-card-content { transform: translateY(0); }
+
+.product-card-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .4rem;
+}
+
+.product-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: .5rem;
+}
+
+.product-card-desc {
+  font-size: .85rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.65);
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity .3s .05s;
+}
+
+.product-card:hover .product-card-desc { opacity: 1; }
+
+.product-card.featured { grid-row: span 2; aspect-ratio: unset; }
+
+/* ── TROFEI ── */
+#trofei {
+  background: linear-gradient(135deg, #0d1f35 0%, var(--ocean) 50%, #051525 100%);
+  position: relative;
+}
+
+.trofei-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trofei-img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  border: 1px solid rgba(244,161,42,.15);
+  transition: transform .4s;
+}
+
+.trofei-list { list-style: none; margin-top: 2rem; }
+
+.trofei-list li {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  font-size: .95rem;
+  color: rgba(255,255,255,.75);
+}
+
+/* ── ORARI ── */
+#orari { background: var(--deep); }
+
+.orari-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.orari-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+
+.orari-table td { padding: 1rem .5rem; font-size: .95rem; }
+
+.orari-table td:first-child {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  color: var(--white);
+  text-transform: capitalize;
+  width: 40%;
+}
+
+.badge-open { background: rgba(39,174,96,.15); color: #27ae60; padding: .2rem .55rem; border-radius: 2px; font-size: .65rem; }
+.badge-half { background: rgba(244,161,42,.12); color: var(--gold); padding: .2rem .55rem; border-radius: 2px; font-size: .65rem; }
+
+.contact-cards { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2.5rem; }
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: 1.3rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform .2s;
+}
+
+.contact-card:hover { transform: translateX(4px); border-color: var(--gold); }
+
+.contact-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: .25rem;
+  }
+
+  .contact-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+/* ── MAP CTA ── */
+#mappa {
+  background: var(--ocean);
+  position: relative;
+  padding: 5rem 3rem;
+  text-align: center;
+}
+
+.mappa-address { font-size: 1.1rem; color: rgba(255,255,255,.65); margin: 1.2rem 0 2.5rem; }
+
+.btn-maps {
+  display: inline-flex;
+  background: var(--white);
+  color: var(--ocean);
+  padding: 1rem 2.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 2px;
+}
+
+/* ── RECENSIONI ── */
+#recensioni {
+  background: linear-gradient(160deg, var(--deep) 0%, #0a1e35 60%, var(--ocean) 100%);
+  padding: 6rem 3rem 4rem;
+  overflow: hidden;
+}
+
+.recensioni-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.recensioni-rating-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.big-score {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stars-big {
+  font-size: 1.6rem;
+  color: var(--gold);
+  letter-spacing: .1em;
+}
+
+.rating-source {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  align-self: flex-end;
+  padding-bottom: .4rem;
+}
+
+.recensioni-track-wrapper {
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recensioni-track {
+  display: flex;
+  gap: 1.8rem;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+
+.recensione-card {
+  flex: 0 0 calc(33.333% - 1.2rem);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 6px;
+  padding: 2rem;
+  transition: border-color .3s, transform .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.recensione-card::before {
+  content: '"';
+  position: absolute;
+  top: -.5rem;
+  right: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 8rem;
+  color: rgba(244,161,42,.06);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.recensione-card:hover {
+  border-color: rgba(244,161,42,.35);
+  transform: translateY(-4px);
+}
+
+.recensione-card.featured-rec {
+  border-color: rgba(244,161,42,.25);
+  background: rgba(244,161,42,.04);
+}
+
+.rec-stars {
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: .1em;
+  margin-bottom: 1rem;
+}
+
+.rec-testo {
+  font-size: .95rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.78);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.rec-autore {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding-top: 1.2rem;
+}
+
+.rec-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--wave), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--deep);
+  flex-shrink: 0;
+}
+
+.rec-nome {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .05em;
+  color: var(--white);
+}
+
+.rec-data {
+  font-size: .75rem;
+  color: var(--muted);
+  margin-top: .15rem;
+}
+
+.recensioni-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.rec-btn {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--white);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rec-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--deep); }
+
+.rec-dots { display: flex; gap: .5rem; }
+
+.rec-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+.rec-dot.active { background: var(--gold); transform: scale(1.3); }
+
+.recensioni-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* recensione-card responsive → vedi blocco RESPONSIVE COMPLETO in fondo */
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep);
+  border-top: 1px solid rgba(244,161,42,.12);
+  padding: 2.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-logo { font-family: 'Playfair Display', serif; color: var(--gold); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE COMPLETO — TABLET & MOBILE
+══════════════════════════════════════════ */
+
+/* ── TABLET (max 900px) ── */
+@media (max-width: 900px) {
+
+  /* NAV */
+  nav { padding: 1rem 1.5rem; }
+  nav ul { display: none; }
+
+  /* HERO */
+  #hero { padding-top: 80px; min-height: 100svh; align-items: flex-start; padding-bottom: 4rem; }
+  .hero-content { padding: 2rem 1.5rem; max-width: 100%; }
+  .hero-title { font-size: clamp(2.6rem, 9vw, 4rem); line-height: 1.05; }
+  .hero-sub { font-size: 1rem; max-width: 100%; }
+  .hero-buttons { flex-direction: column; gap: .9rem; }
+  .btn-primary, .btn-outline { text-align: center; padding: .9rem 1.8rem; }
+  .hero-logo-visual { display: none !important; }
+  .hero-hook { display: none; }
+
+  /* SEZIONI GENERALI */
+  section { padding: 4rem 1.5rem; }
+
+  /* ABOUT */
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-image-stack { height: 320px; }
+  .about-img-main { width: 85%; height: 280px; }
+  .about-img-accent { width: 60%; height: 180px; }
+  .about-img-label { right: 0; bottom: 60px; font-size: .65rem; }
+  .about-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-num { font-size: 2rem; }
+
+  /* PRODOTTI */
+  .products-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .product-card.featured { grid-row: span 1; aspect-ratio: 4/5; }
+  .product-card-content { padding: 1.2rem 1rem; transform: translateY(0); }
+  .product-card-desc { opacity: 1; font-size: .78rem; }
+  .product-card-name { font-size: 1.1rem; }
+
+  /* TROFEI */
+  .trofei-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  /* ORARI */
+  .orari-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .orari-table td { font-size: .88rem; padding: .8rem .4rem; }
+
+  /* RECENSIONI */
+  .recensione-card { flex: 0 0 calc(85vw); }
+  .logo-text { display: none; }
+
+  /* FOOTER */
+  footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+}
+
+/* ── MOBILE STRETTO (max 600px) ── */
+@media (max-width: 600px) {
+
+  /* NAV */
+  nav { padding: .9rem 1.2rem; }
+  .logo-img { height: 38px; width: 38px; }
+  nav .nav-cta { padding: .45rem 1rem; font-size: .75rem; }
+
+  /* HERO */
+  #hero { padding-top: 72px; }
+  .hero-content { padding: 1.8rem 1.2rem; }
+  .hero-eyebrow { font-size: .7rem; letter-spacing: .2em; margin-bottom: 1rem; }
+  .hero-title { font-size: clamp(2.2rem, 10vw, 3rem); margin-bottom: 1.2rem; }
+  .hero-sub { font-size: .95rem; line-height: 1.65; margin-bottom: 2rem; }
+  .hero-buttons { gap: .75rem; }
+  .btn-primary, .btn-outline { font-size: .88rem; padding: .85rem 1.5rem; width: 100%; display: block; text-align: center; }
+
+  /* SEZIONI */
+  section { padding: 3.5rem 1.2rem; }
+  .section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+  .section-body { font-size: .95rem; }
+
+/* ABOUT */
+.about-grid { gap: 2rem; }
+
+.about-image-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  height: auto;
+}
+
+.about-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* 🔥 mantiene proporzioni corrette */
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+.about-img-main,
+.about-img-accent {
+  transform: none;
+}
+
+.about-img-label {
+  display: none;
+}
+
+  /* PRODOTTI — una colonna su mobile stretto */
+  .products-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .product-card { aspect-ratio: 16/10; }
+  .product-card.featured { aspect-ratio: 16/10; }
+  .product-card-content { padding: 1rem; }
+  .product-card-name { font-size: 1.15rem; }
+  .product-card-desc { font-size: .82rem; opacity: 1; }
+  .product-card-tag { font-size: .65rem; }
+
+  /* TROFEI */
+  .trofei-layout { gap: 2rem; }
+  .trofei-list li { font-size: .88rem; }
+
+  /* ORARI */
+  .orari-layout { gap: 2.5rem; }
+  .orari-table td { font-size: .82rem; padding: .7rem .3rem; }
+  .badge-open, .badge-half { display: block; margin-top: .25rem; width: fit-content; font-size: .6rem; }
+  .contact-card { padding: 1rem 1.2rem; gap: 1rem; }
+  .contact-value { font-size: .9rem; word-break: break-word; }
+
+  /* RECENSIONI */
+  #recensioni { padding: 3.5rem 1.2rem 3rem; }
+  .recensione-card { flex: 0 0 calc(92vw); padding: 1.5rem; }
+  .rec-testo { font-size: .88rem; line-height: 1.65; }
+  .big-score { font-size: 2.8rem; }
+  .stars-big { font-size: 1.3rem; }
+  .recensioni-rating-summary { gap: .7rem; }
+
+  /* MAPPA */
+  #mappa { padding: 3.5rem 1.2rem; }
+  .mappa-address { font-size: 1rem; }
+  .btn-maps { padding: .85rem 1.5rem; font-size: .9rem; width: 100%; justify-content: center; }
+
+  /* MARQUEE */
+  .marquee-inner span { font-size: .72rem; padding: 0 1.2rem; }
+
+  /* FOOTER */
+  footer { padding: 1.8rem 1.2rem; gap: .7rem; font-size: .9rem; }
+}
+
+/* ── HERO LOGO VISUAL ── */
+.hero-logo-visual {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 340px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.hero-logo-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 40px rgba(244,161,42,0.35)) drop-shadow(0 0 80px rgba(21,101,192,0.3));
+  animation: heroLogoFloat 4s ease-in-out infinite;
+}
+
+@keyframes heroLogoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* hero-logo-visual responsive → vedi blocco RESPONSIVE COMPLETO in fondo */

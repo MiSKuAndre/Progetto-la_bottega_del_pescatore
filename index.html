@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bottega del Pescatore – Forlì</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Barra di navigazione principale (fissa in cima allo schermo) -->
+<nav>
+  <!--si ricarica la pagina e va in cima-->
+  <a href="javascript:location.reload()" class="logo">
+    <img src="logo_transparent.png" alt="La Bottega del Pescatore" class="logo-img">
+    <span class="logo-text">La Bottega <span>del Pescatore</span></span>
+  </a>
+  <ul>
+    <li><a href="#about">Chi Siamo</a></li>
+    <li><a href="#prodotti">Prodotti</a></li>
+    <li><a href="#trofei">Trofei</a></li>
+    <li><a href="#orari">Orari</a></li>
+    <li><a href="#recensioni">Recensioni</a></li>
+    <li><a href="#mappa">Dove Siamo</a></li>
+  </ul>
+  <a href="tel:3779860520" class="nav-cta">📞 Chiama</a>
+</nav>
+
+<!-- Sezione Hero con sfondo a onde e contenuto centrale -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="water-lines">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C180,20 360,100 540,60 C720,20 900,100 1080,60 C1260,20 1440,80 1440,60 L1440,120 L0,120 Z" fill="rgba(21,101,192,0.18)"/>
+      <path d="M0,80 C200,40 400,110 600,70 C800,30 1000,100 1200,60 C1300,45 1400,75 1440,65 L1440,120 L0,120 Z" fill="rgba(10,42,74,0.35)"/>
+      <path d="M1440,60 C1620,20 1800,100 1980,60 C2160,20 2340,100 2520,60 C2700,20 2880,80 2880,60 L2880,120 L1440,120 Z" fill="rgba(21,101,192,0.18)"/>
+      <path d="M1440,80 C1640,40 1840,110 2040,70 C2240,30 2440,100 2640,60 C2740,45 2840,75 2880,65 L2880,120 L1440,120 Z" fill="rgba(10,42,74,0.35)"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Forlì · Dal 2023 · Passione e Qualità</p>
+    <h1 class="hero-title">Il tuo <em>punto di riferimento</em> per la pesca</h1>
+    <p class="hero-sub">Attrezzatura professionale, canne da pesca, mulinelli, esche e molto altro. Gestito da un vero appassionato che conosce ogni prodotto che vende.</p>
+    <div class="hero-buttons">
+      <a href="#prodotti" class="btn-primary">Scopri i Prodotti</a>
+      <a href="#orari" class="btn-outline">Orari & Contatti</a>
+    </div>
+  </div>
+  <div class="hero-logo-visual">
+    <img src="logo_transparent.png" alt="La Bottega del Pescatore">
+  </div>
+  <div class="hero-hook">
+  <svg viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg">
+    <line x1="50" y1="0" x2="50" y2="240" stroke="#f4a12a" stroke-width="3" />
+    <g transform="translate(0, 240)">
+      <path d="M50 0 L50 30 C50 50 25 50 25 30" stroke="#f4a12a" stroke-width="5" fill="none" stroke-linecap="round" />
+      <path d="M25 30 L32 18" stroke="#f4a12a" stroke-width="5" fill="none" stroke-linecap="round" />
+    </g>
+  </svg>
+</div>
+</section>
+<!-- Striscia con i marchi principali (effetto marquee) -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Daiwa</span><span>Trabucco</span><span>Tubertini</span><span>Colmic</span><span>Maver</span><span>Milo</span><span>Falcon</span><span>Scorziello</span><span>Rapture</span><span>Rapala</span><span>Jatsui</span>    <span>Ragot</span><span>Fox</span><span>Carp Spirit</span><span>Ignesti</span><span>Vincent</span><span>Dynamite Baits</span><span>Traper</span><span>Stonfo</span><span>Preston</span>
+    <span>Daiwa</span><span>Trabucco</span><span>Tubertini</span><span>Colmic</span><span>Maver</span><span>Milo</span><span>Falcon</span><span>Scorziello</span><span>Rapture</span><span>Rapala</span><span>Jatsui</span>    <span>Ragot</span><span>Fox</span><span>Carp Spirit</span><span>Ignesti</span><span>Vincent</span><span>Dynamite Baits</span><span>Traper</span><span>Stonfo</span><span>Preston</span> 
+  </div>
+</div>
+<!-- Sezione "Chi Siamo" con griglia e immagini sovrapposte -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label reveal">Chi Siamo</p>
+      <h2 class="section-title reveal">La passione per la pesca <em>come filosofia</em></h2>
+      <p class="section-body reveal">Simone ha trasformato la sua passione in un negozio di riferimento per i pescatori di Forlì e dintorni. Ogni prodotto è scelto con cura e conoscenza diretta sul campo — da un pescatore, per i pescatori.</p>
+      <div class="about-stats">
+        <div class="stat-card reveal">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Prodotti in stock</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Marchi selezionati</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">3°</div>
+          <div class="stat-label">Campionato Italiano 2025</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">★★★★★</div>
+          <div class="stat-label">Montaggio & Riparazione</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-image-stack reveal">
+      <img class="about-img about-img-accent" src="IMG17.jpg" alt="Interno negozio" onerror="this.style.background='rgba(244,161,42,0.2)'">
+      <img class="about-img about-img-main" src="IMG8.jpg" alt="Esterno negozio La Bottega del Pescatore" onerror="this.style.background='rgba(21,101,192,0.3)'">
+    </div>
+  </div>
+</section>
+<!-- Sezione Prodotti con griglia di card e immagini sovrapposte -->
+<section id="prodotti">
+  <div class="products-header reveal">
+    <p class="section-label">Cosa Trovi</p>
+    <h2 class="section-title">Una selezione <em>completa</em></h2>
+    <p class="section-body">Dalle canne da pesca ai mulinelli, dagli ami agli artificiali, dalle esche agli accessori. Tutto ciò di cui hai bisogno, in un unico posto.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card featured reveal">
+      <img src="IMG4.jpg" alt="Canne da pesca" onerror="this.style.background='rgba(21,101,192,0.4)'">
+      <div class="product-card-overlay"></div>
+      <div class="product-card-content">
+        <div class="product-card-tag">Bestseller</div>
+        <div class="product-card-name">Canne da Pesca</div>
+        <div class="product-card-desc">Ampia selezione di canne per ogni tecnica: feeder, match, bolognese, spinning e surf casting. Marchi come Daiwa, Tubertini, Maver e molti altri.</div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <img src="IMG10.jpg" alt="Mulinelli Daiwa" onerror="this.style.background='rgba(21,101,192,0.3)'">
+      <div class="product-card-overlay"></div>
+      <div class="product-card-content">
+        <div class="product-card-tag">Top Brand</div>
+        <div class="product-card-name">Mulinelli</div>
+        <div class="product-card-desc">Daiwa Fuego, Exceler, Legalis, Ninja e molti altri modelli.</div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <img src="IMG1.jpg" alt="Artificiali e esche" onerror="this.style.background='rgba(21,101,192,0.3)'">
+      <div class="product-card-overlay"></div>
+      <div class="product-card-content">
+        <div class="product-card-tag">Spinning</div>
+        <div class="product-card-name">Artificiali & Esche</div>
+        <div class="product-card-desc">Vasti assortimenti di esche artificiali Rapture, Storm e molto altro.</div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <img src="IMG6.jpg" alt="Galleggianti e accessori" onerror="this.style.background='rgba(21,101,192,0.3)'">
+      <div class="product-card-overlay"></div>
+      <div class="product-card-content">
+        <div class="product-card-tag">Accessori</div>
+        <div class="product-card-name">Galleggianti & Terminal</div>
+        <div class="product-card-desc">Centinaia di galleggianti, piombini, ami e accessori per ogni esigenza.</div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <img src="IMG3.jpg" alt="Esche naturali e boilies" onerror="this.style.background='rgba(21,101,192,0.3)'">
+      <div class="product-card-overlay"></div>
+      <div class="product-card-content">
+        <div class="product-card-tag">Carpfishing</div>
+        <div class="product-card-name">Boilies & Pasture</div>
+        <div class="product-card-desc">Dynamite Baits, Berkley e tanto altro per la pesca alla carpa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Sezione Trofei con layout a due colonne e lista di riconoscimenti -->
+<section id="trofei">
+  <div class="trofei-layout">
+    <div class="reveal">
+      <img class="trofei-img" src="IMG19.jpg" alt="Simone Lani con trofeo" onerror="this.style.background='rgba(21,101,192,0.4)'; this.style.height='400px'">
+      <img class="trofei-img" src="IMG20.jpg" alt="Trofei e riconoscimenti" onerror="this.style.background='rgba(21,101,192,0.4)'; this.style.height='400px'">
+    </div>
+    <div>
+      <p class="section-label reveal">Competizioni</p>
+      <h2 class="section-title reveal">Non solo un negozio — <em>una squadra campione</em></h2>
+      <p class="section-body reveal">La Bottega del Pescatore supporta e fa parte dell'ASD Lenza Club l'Airone, che ha conquistato riconoscimenti ai massimi livelli nazionali.</p>
+      <ul class="trofei-list reveal">
+        <li><span class="icon">🥉</span><span><strong>3° Classificata Società</strong> — Campionato Italiano di Pesca in Fiume a Squadre 2025</span></li>
+        <li><span class="icon">🥉</span><span><strong>3° Classificata Società</strong> — Campionato Italiano Promozionale di Pesca in Fiume 2024 e 2025</span></li>
+        <li><span class="icon">🥉</span><span><strong>3° Classificata Coppia</strong> — Campionato Italiano a Coppie di Pesca in Fiume 2024</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- Sezione Orari e Contatti con layout a due colonne e tabella degli orari -->
+<section id="orari">
+  <div class="orari-layout">
+    <div>
+      <p class="section-label reveal">Orari di Apertura</p>
+      <h2 class="section-title reveal">Quando <em>vieni a trovarci</em></h2>
+      <table class="orari-table reveal">
+        <tbody>
+          <tr><td>Lunedì <span class="badge-open">Aperto</span></td><td>08:30–12:30 / 15:30–19:30</td></tr>
+          <tr><td>Martedì <span class="badge-open">Aperto</span></td><td>08:30–12:30 / 15:30–19:30</td></tr>
+          <tr><td>Mercoledì <span class="badge-open">Aperto</span></td><td>08:30–12:30 / 15:30–19:30</td></tr>
+          <tr><td>Giovedì <span class="badge-half">Solo mattina</span></td><td>08:30–12:30</td></tr>
+          <tr><td>Venerdì <span class="badge-open">Aperto</span></td><td>08:30–12:30 / 15:30–19:30</td></tr>
+          <tr><td>Sabato <span class="badge-open">Aperto</span></td><td>08:30–12:30 / 15:30–19:30</td></tr>
+          <tr class="chiuso"><td>Domenica</td><td>Chiuso</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p class="section-label reveal">Contatti</p>
+      <h2 class="section-title reveal">Siamo <em>a tua disposizione</em></h2>
+      <div class="contact-cards reveal">
+        <a href="tel:3779860520" class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div><div class="contact-label">Telefono</div><div class="contact-value">377 986 0520</div></div>
+        </a>
+        <a href="mailto:simone.lani2023@gmail.com" class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div><div class="contact-label">Mail</div><div class="contact-value">simone.lani2023@gmail.com</div></div>
+        </a>
+        <a href="https://www.instagram.com/la.bottegadelpescatore" target="_blank" class="contact-card">
+          <div class="contact-icon">📸</div>
+          <div><div class="contact-label">Instagram</div><div class="contact-value">@la.bottegadelpescatore</div></div>
+        </a>
+        <a href="https://www.facebook.com/p/La-bottega-del-Pescatore-100089354960634/" target="_blank" class="contact-card">
+          <div class="contact-icon">👥</div>
+          <div><div class="contact-label">Facebook</div><div class="contact-value">@la.bottegadelpescatore</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Sezione Recensioni con carosello e stelle -->
+<section id="recensioni">
+  <div class="recensioni-header reveal">
+    <p class="section-label">Cosa Dicono di Noi</p>
+    <h2 class="section-title">Recensioni dei <em>nostri clienti</em></h2>
+    <div class="recensioni-rating-summary">
+      <div class="big-score">5.0</div>
+      <div class="stars-big">★★★★★</div>
+    </div>
+  </div>
+  <div class="recensioni-track-wrapper">
+    <div class="recensioni-track" id="recensioniTrack">
+      <div class="recensione-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-testo">"Ho avuto un'esperienza fantastica in questo negozio di articoli da pesca! Il personale è estremamente competente e disponibile, pronto a fornire ottimi consigli su attrezzatura e tecniche di pesca. Il negozio è ben fornito con una vasta gamma di prodotti di alta qualità, e ho trovato esattamente quello che cercavo. Inoltre, il servizio è veloce e professionale. Tornerò sicuramente per i miei acquisti futuri. Consiglio vivamente questo negozio a chiunque sia appassionato di pesca!
+SIMONE SEI IL MIGLIORE!!!CONTINUA COSI👍🏽👍🏽👍🏽OTTIMO LAVORO"</p>
+        <div class="rec-autore">
+          <div class="rec-avatar">R</div>
+          <div><div class="rec-nome">Raja G.</div><div class="rec-data">2025</div></div>
+        </div>
+      </div>
+      <div class="recensione-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-testo">"Mi sono approcciato al titolare come completo neofita ed è stato più che capace di spiegarmi ciò che mi servisse per iniziare senza vendermi più del necessario. Mi sono trovato veramente bene sia come prezzi sia soprattutto come servizio ricevuto, ci tornerò sicuramente"</p>
+        <div class="rec-autore">
+          <div class="rec-avatar">A</div>
+          <div><div class="rec-nome">Alessandro C.</div><div class="rec-data">2024</div></div>
+        </div>
+      </div>
+      <div class="recensione-card featured-rec">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-testo">"Miglior negozio di pesca in zona 💪🏻"</p>
+        <div class="rec-autore">
+          <div class="rec-avatar">A</div>
+          <div><div class="rec-nome">Alessandro</div><div class="rec-data">2026</div></div>
+        </div>
+      </div>
+      <div class="recensione-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-testo">"Negozio ben fornito e sempre pronto a tutte le esigenze del cliente! Professionalità, educazione, simpatia e vicinanza al cliente caratterizzano Simone. Consigliatissimo"</p>
+        <div class="rec-autore">
+          <div class="rec-avatar">M</div>
+          <div><div class="rec-nome">Michele B.</div><div class="rec-data">2024</div></div>
+        </div>
+      </div>
+      <div class="recensione-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-testo">"Ottimo negozio dove trovare i prodotti IGNESTI gestito in modo professionale da Simone."</p>
+        <div class="rec-autore">
+          <div class="rec-avatar">R</div>
+          <div><div class="rec-nome">Rinaldo M.G.</div><div class="rec-data">2025</div></div>
+        </div>
+      </div>
+      <div class="recensione-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-testo">"Serietà e disponibilità sono alla base di un Titolare che farà parlare di sè. Punto indispensabile per esche e attrezzature del pescatore...👍🏻🔝"</p>
+        <div class="rec-autore">
+          <div class="rec-avatar">G</div>
+          <div><div class="rec-nome">Giacomo S.</div><div class="rec-data">2023</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="recensioni-nav reveal">
+    <button class="rec-btn" id="recPrev">&#8592;</button>
+    <div class="rec-dots" id="recDots"></div>
+    <button class="rec-btn" id="recNext">&#8594;</button>
+  </div>
+  <div class="recensioni-cta reveal">
+    <a href="https://www.google.com/search?q=la+bottega+del+pescatore+forl%C3%AC&sca_esv=4f709db2114f009d&sxsrf=ANbL-n59ILBqBXl3tcgcPnKnRU26HC0zpA%3A1775048726677&source=hp&ei=FhjNaYuSI_6S9u8P842QwAk&iflsig=AFdpzrgAAAAAac0mJr2LvI1MKuk_9usmwhDCOpPqMjLP&gs_ssp=eJzj4tVP1zc0LClKS0mris8wYLRSNagwNDZKTjQ3MTVIsTA1TDIytDKoSDFIMTcyMbcwtExNSTS0TPGSz0lUSMovKUlNT1RISc1RKEgtTk4syS9KVUjLL8o5vAYAXeMbwA&oq=labottega+del+pescatore&gs_lp=Egdnd3Mtd2l6IhdsYWJvdHRlZ2EgZGVsIHBlc2NhdG9yZSoCCAUyBxAjGLACGCcyBxAjGLACGCcyEBAuGIAEGMcBGA0YjgUYrwEyBxAAGIAEGA0yDRAuGIAEGMcBGA0YrwEyDRAuGIAEGMcBGA0YrwEyDRAuGIAEGMcBGA0YrwEyBxAAGIAEGA0yDRAuGIAEGMcBGA0YrwEyDRAuGIAEGMcBGA0YrwFIyDNQAFiGI3AAeACQAQCYAdABoAHVGaoBBjAuMjIuMbgBAcgBAPgBAZgCF6ACmRrCAgQQIxgnwgIQEC4YgAQYxwEYJxiKBRivAcICChAjGIAEGCcYigXCAgoQABiABBhDGIoFwgITEC4YgAQYQxjHARiKBRiOBRivAcICEBAuGIAEGEMYxwEYigUYrwHCAg0QLhiABBixAxhDGIoFwgINEAAYgAQYsQMYQxiKBcICCBAuGIAEGLEDwgIIEAAYgAQYsQPCAgsQABiABBixAxiDAcICCxAAGIAEGJIDGIoFwgILEC4YgAQYxwEYrwHCAg4QLhiABBjHARiOBRivAcICBRAAGIAEwgIKEAAYgAQYFBiHAsICDRAuGIAEGMcBGAoYrwHCAgcQABiABBgKwgIQEC4YgAQYxwEYmAUYChivAcICBxAjGLECGCfCAg8QLhiABBjHARgKGAsYrwHCAgwQABiABBjJAxgKGAvCAgkQABiABBgKGAvCAhIQLhiABBjHARiYBRgKGAsYrwHCAhIQLhiABBjHARgKGAsYjgUYrwGYAwCSBwYwLjIyLjGgB_TTA7IHBjAuMjIuMbgHmRrCBwYwLjIxLjLIBzaACAA&sclient=gws-wiz" target="_blank" class="btn-outline">⭐ Lascia la tua recensione su Google</a>
+  </div>
+</section>
+<!-- Sezione Mappa con indirizzo e link a Google Maps -->
+<section id="mappa">
+  <div class="mappa-content reveal">
+    <p class="section-label">Dove Siamo</p>
+    <h2 class="section-title">Vieni a <em>trovarci</em> a Forlì</h2>
+    <p class="mappa-address"><strong>Viale Bidente, 75</strong><br>47121 Forlì (FC) · Emilia-Romagna</p>
+    <a href="https://maps.google.com/?q=Viale+Bidente+75+Forlì" target="_blank" class="btn-maps">🗺️ Apri su Google Maps</a>
+  </div>
+</section>
+<!-- Footer con logo e copyright -->
+<footer>
+  <div class="footer-logo">La Bottega <span>del Pescatore</span></div>
+  <p class="footer-copy">© 2026 La Bottega del Pescatore · Forlì</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
