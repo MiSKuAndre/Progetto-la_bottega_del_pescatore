@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ── COOKIE BANNER ──
+    const banner = document.getElementById('cookieBanner');
+    if (banner) {
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent) {
+            // Già scelto in precedenza: nascondi subito senza animazione
+            banner.style.display = 'none';
+        } else {
+            document.getElementById('cookieAccept').addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'accepted');
+                banner.classList.add('hidden');
+                setTimeout(() => banner.style.display = 'none', 350);
+            });
+            document.getElementById('cookieDecline').addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'declined');
+                banner.classList.add('hidden');
+                setTimeout(() => banner.style.display = 'none', 350);
+            });
+        }
+    }
     
     // 1. Scroll reveal: Anima gli elementi quando appaiono a schermo
     const reveals = document.querySelectorAll('.reveal');
